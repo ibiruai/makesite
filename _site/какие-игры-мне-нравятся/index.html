@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Какие игры мне нравятся - Блог Акима</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body id="какие-игры-мне-нравятся">
+
+<nav>
+<section>
+    <span class="home">
+        <a href="/">Все записи</a>
+    </span>
+</section>
+</nav>
+
+<main>
+<article>
+<h1>Какие игры мне нравятся</h1>
+<p>Мне нравится <a href="https://www.wesnoth.org/">Битва за Веснот</a>. Это пошаговая стратегия с интересными кампаниями и красивой музыкой.</p>
+<p>Вообще, я не играю в игры, потому что у меня нет на это времени. Я не могу сесть и пройти что-то вроде Скайрима (прохождение занимает <a href="https://howlongtobeat.com/game/9859">больше 35 часов</a>). В этих играх слишком много геймплея и мало истории. Мне нравятся визуальные новеллы, в них геймплея нет. Либо что-то короткое, как &quot;Papers, Please&quot;.</p>
+<p>Мне не нравятся сессионные игры. Я долгое время играл в Лигу легенд. Люди, которые играют в эти игры, не любят в них играть.</p>
+<p>Я люблю карточные игры. Мне нравится, насколько универсальна колода карт, как лист бумаги и ручка. Можно играть вдвоём (дурак, буркозёл) и компанией (верю не верю, говно). Мне хотелось бы знать больше карточных игр.</p>
+<p>Мне нравится мафия и шпион. Шпион похож на мафию, здесь тоже две команды и есть одно слово, которое все объясняют по кругу. При этом более большинство его знает сразу, а один-два человека - шпионы - нет. Первые должны доказать остальным, что они его знают, и при этом не выдать его, а вторые - его угадать.</p>
+
+<p class="meta">2025-11-29</p>
+<p><a href="/">Назад</a></p>
+</article>
+<h2>Комментарии</h2>
+<div class="comments">Загрузка... <noscript>Для комментариев нужен JavaScript.</noscript></div>
+<script>
+function init() {
+  const id = 'AKfycbxBf57qkcTeoZWeU-DwRFI7tx24O8t74iGkkkP3SQKa3SSUahVS0djr6aEqCoyiz9ku';  
+  const url = `https://script.google.com/macros/s/${id}/exec?slug=какие-игры-мне-нравятся`;
+  const commentsDiv = document.getElementsByClassName("comments")[0];
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      commentsDiv.innerHTML = '';
+      data.forEach(e => {
+        let d = new Date(e.date);
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        let div = document.createElement('div');
+        let p1 = document.createElement('p');
+        p1.textContent = e.comment;
+        let p2 = document.createElement('p');
+        p2.className = 'meta';
+        p2.textContent = d.toISOString().replace('T', ' ').slice(0,16) + (e.name ? ', ' + e.name : '');
+        div.appendChild(p1);
+        div.appendChild(p2);
+        commentsDiv.appendChild(div);
+      });
+      commentsDiv.innerHTML += 
+        'Оставить комментарий<br><input placeholder="Имя"><br><textarea placeholder="Текст комментария (обязательно)"></textarea><br><button type="submit">Отправить</button>';
+      let btn = commentsDiv.querySelector("button");
+      btn.onclick = () => {
+        let name = commentsDiv.querySelector("input").value.trim();
+        let comment = commentsDiv.querySelector("textarea").value.trim();
+        if (!comment) return;
+        btn.textContent = "Отправка...";
+        fetch(`https://script.google.com/macros/s/${id}/exec`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: `name=${encodeURIComponent(name)}&comment=${encodeURIComponent(comment)}&slug=${encodeURIComponent('какие-игры-мне-нравятся')}`
+        }).then(res => res.json()).then(res => {
+          if (res.result === 'success') init();
+        });
+      };
+    })
+    .catch(console.error);
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</main>
+
+</body>
+</html>

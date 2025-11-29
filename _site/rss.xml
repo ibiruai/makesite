@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+
+<channel>
+<title>Блог Акима</title>
+<link>http://localhost:8000/</link>
+<description>Записи моего блога.</description>
+
+<item>
+<title>Какие игры мне нравятся</title>
+<link>http://localhost:8000/какие-игры-мне-нравятся/</link>
+<description>
+<![CDATA[
+<p>
+Мне нравится Битва за Веснот. Это пошаговая стратегия с интересными кампаниями и красивой музыкой. Вообще, я не играю в игры, потому что у меня&nbsp;<a href="http://localhost:8000/какие-игры-мне-нравятся/">...</a>
+</p>
+]]>
+</description>
+<pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+</item>
+
+
+</channel>
+</rss>

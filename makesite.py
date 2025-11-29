@@ -158,7 +158,7 @@ def make_list(posts, dst, list_layout, item_layout, **params):
         item = render(item_layout, **item_params)
         items.append(item)
 
-    params['content'] = ''.join(items)
+    params['content'] = ''.join(items).replace(' .', '.').replace('/./', '/')
     dst_path = render(dst, **params)
     output = render(list_layout, **params)
 
@@ -175,8 +175,8 @@ def main():
     # Default parameters.
     params = {
         'base_path': '',
-        'subtitle': 'Lorem Ipsum',
-        'author': 'Admin',
+        'subtitle': 'Блог Акима',
+        'author': 'Аким',
         'site_url': 'http://localhost:8000',
         'current_year': datetime.datetime.now().year
     }
@@ -205,23 +205,23 @@ def main():
 
     # Create blogs.
     blog_posts = make_pages('content/blog/*.md',
-                            '_site/blog/{{ slug }}/index.html',
-                            post_layout, blog='blog', **params)
-    news_posts = make_pages('content/news/*.html',
-                            '_site/news/{{ slug }}/index.html',
-                            post_layout, blog='news', **params)
+                            '_site/{{ slug }}/index.html',
+                            post_layout, blog='.', **params)
+    # news_posts = make_pages('content/news/*.html',
+    #                         '_site/news/{{ slug }}/index.html',
+    #                         post_layout, blog='news', **params)
 
     # Create blog list pages.
-    make_list(blog_posts, '_site/blog/index.html',
-              list_layout, item_layout, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/index.html',
-              list_layout, item_layout, blog='news', title='News', **params)
+    make_list(blog_posts, '_site/index.html',
+              list_layout, item_layout, blog='.', title='Записи', **params)
+    # make_list(news_posts, '_site/news/index.html',
+    #           list_layout, item_layout, blog='news', title='News', **params)
 
     # Create RSS feeds.
-    make_list(blog_posts, '_site/blog/rss.xml',
-              feed_xml, item_xml, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/rss.xml',
-              feed_xml, item_xml, blog='news', title='News', **params)
+    make_list(blog_posts, '_site/rss.xml',
+              feed_xml, item_xml, blog='.', title='Записи', **params)
+    # make_list(news_posts, '_site/news/rss.xml',
+    #           feed_xml, item_xml, blog='news', title='News', **params)
 
 
 # Test parameter to be set temporarily by unit tests.

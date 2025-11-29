@@ -2,9 +2,9 @@
 <rss version="2.0">
 
 <channel>
-<title>{{ title }}</title>
+<title>{{ subtitle }}</title>
 <link>{{ site_url }}/</link>
-<description>Grow with Technology</description>
+<description>Записи моего блога.</description>
 
 {{ content }}
 

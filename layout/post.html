@@ -1,5 +1,51 @@
 <article>
-<h1><a href="{{ base_path }}/{{ blog }}/{{ slug }}/">{{ title }}</a></h1>
-<p class="meta">Published on {{ date }} by <b>{{ author }}</b></p>
+<h1>{{ title }}</h1>
 {{ content }}
+<p class="meta">{{ date }}</p>
+<p><a href="{{ base_path }}/">Назад</a></p>
 </article>
+<h2>Комментарии</h2>
+<div class="comments">Загрузка... <noscript>Для комментариев нужен JavaScript.</noscript></div>
+<script>
+function init() {
+  const id = 'AKfycbxBf57qkcTeoZWeU-DwRFI7tx24O8t74iGkkkP3SQKa3SSUahVS0djr6aEqCoyiz9ku';  
+  const url = `https://script.google.com/macros/s/${id}/exec?slug={{ slug }}`;
+  const commentsDiv = document.getElementsByClassName("comments")[0];
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      commentsDiv.innerHTML = '';
+      data.forEach(e => {
+        let d = new Date(e.date);
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        let div = document.createElement('div');
+        let p1 = document.createElement('p');
+        p1.textContent = e.comment;
+        let p2 = document.createElement('p');
+        p2.className = 'meta';
+        p2.textContent = d.toISOString().replace('T', ' ').slice(0,16) + (e.name ? ', ' + e.name : '');
+        div.appendChild(p1);
+        div.appendChild(p2);
+        commentsDiv.appendChild(div);
+      });
+      commentsDiv.innerHTML += 
+        'Оставить комментарий<br><input placeholder="Имя"><br><textarea placeholder="Текст комментария (обязательно)"></textarea><br><button type="submit">Отправить</button>';
+      let btn = commentsDiv.querySelector("button");
+      btn.onclick = () => {
+        let name = commentsDiv.querySelector("input").value.trim();
+        let comment = commentsDiv.querySelector("textarea").value.trim();
+        if (!comment) return;
+        btn.textContent = "Отправка...";
+        fetch(`https://script.google.com/macros/s/${id}/exec`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: `name=${encodeURIComponent(name)}&comment=${encodeURIComponent(comment)}&slug=${encodeURIComponent('{{ slug }}')}`
+        }).then(res => res.json()).then(res => {
+          if (res.result === 'success') init();
+        });
+      };
+    })
+    .catch(console.error);
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
