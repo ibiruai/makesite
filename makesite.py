@@ -177,7 +177,7 @@ def main():
         'base_path': '',
         'subtitle': 'Блог Акима',
         'author': 'Аким',
-        'site_url': 'http://localhost:8000',
+        'site_url': 'https://akim.vercel.app',
         'current_year': datetime.datetime.now().year
     }
 
