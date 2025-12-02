@@ -1,8 +1,11 @@
 body {
   --main-color: #fc54d4;
   --secondary-color: black;
-  --main-color: #ffa825;
+  /* --main-color: #ffa825; */
+  --main-color: #000000;
+  --secondary-color: #ffffff;
   margin: 0;
+  padding-bottom: 12px;
   background: var(--secondary-color);
 }
 input, textarea, button {
@@ -14,18 +17,19 @@ input, textarea, button {
   line-height: 1.5em;
   color: var(--main-color);
   font-size: 16px;
-  font-family: monospace;
+  font-family: Fira Code, monospace;
   text-decoration: none;
 }
-a, button, input, textarea {
+:not(p) > a, button, input, textarea {
   margin: 0;
   display: inline-block;
   border: 1px dashed currentColor;
   border-radius: 4px;
   padding: 1px 6px;
 }
-p a {
-  margin: -20px 0;
+p > a {
+  border: 0;
+  border-bottom: 1px dashed currentColor;
 }
 a:hover, button:hover,
 a:focus, button:focus,
@@ -92,4 +96,8 @@ p.meta {
 ::selection {
   background-color: var(--main-color);
   color: var(--secondary-color);
+}
+::placeholder {
+  color: var(--main-color);
+  opacity: 0.5;
 }
