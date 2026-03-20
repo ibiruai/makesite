@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/fira_code.css">
 </head>
 
-<body id="какие-игры-мне-нравятся">
+<body id="kakie-igry-mne-nravyatsya">
 
 <nav>
 <section>
@@ -35,7 +35,7 @@
 <script>
 function init() {
   const id = 'AKfycbxBf57qkcTeoZWeU-DwRFI7tx24O8t74iGkkkP3SQKa3SSUahVS0djr6aEqCoyiz9ku';  
-  const url = `https://script.google.com/macros/s/${id}/exec?slug=какие-игры-мне-нравятся`;
+  const url = `https://script.google.com/macros/s/${id}/exec?slug=kakie-igry-mne-nravyatsya`;
   const commentsDiv = document.getElementsByClassName("comments")[0];
   fetch(url)
     .then(r => r.json())
@@ -65,7 +65,7 @@ function init() {
         fetch(`https://script.google.com/macros/s/${id}/exec`, {
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: `name=${encodeURIComponent(name)}&comment=${encodeURIComponent(comment)}&slug=${encodeURIComponent('какие-игры-мне-нравятся')}`
+          body: `name=${encodeURIComponent(name)}&comment=${encodeURIComponent(comment)}&slug=${encodeURIComponent('kakie-igry-mne-nravyatsya')}`
         }).then(res => res.json()).then(res => {
           if (res.result === 'success') init();
         });

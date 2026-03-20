@@ -1,12 +1,17 @@
 body {
-  --main-color: #fc54d4;
-  --secondary-color: black;
-  /* --main-color: #ffa825; */
   --main-color: #000000;
   --secondary-color: #ffffff;
   margin: 0;
   padding-bottom: 12px;
   background: var(--secondary-color);
+  overflow-wrap: anywhere;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    /* --main-color: #fc54d4; */
+    --main-color: #ffa825;
+    --secondary-color: black;
+  }
 }
 input, textarea, button {
   all: unset;
@@ -100,4 +105,13 @@ p.meta {
 ::placeholder {
   color: var(--main-color);
   opacity: 0.5;
+}
+blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 25px;
+  border-left: 4px solid;
+}
+span[title] {
+  border-bottom: 1px dashed;
 }
